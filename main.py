@@ -10,18 +10,14 @@ class Main:
         self.n = 5
         self.model = None
 
-    def create_model(self):
+    def create_model(self, datafile, pickle_file, csv_file, pickle_ngrams=False):
         build_model = BuildModel(self.n)
-        file = 'C:/Users/hantz/Documents/Programmering/Verktyg/data/Bloggmix/bloggmix.dat'
-        pickle_file = 'bloggmix_n=5_ngrams.pickle'
-        csv_file = 'bloggmix_n=5_ngrams.csv'
-        pickle_ngrams = 'bloggmix_ngrams_model.pickle'
-        build_model.build_cache(file=file, pickle_file=pickle_file, csv_file=csv_file, 
-                                pickle_ngrams=False, max=466521)
+        build_model.build_cache(file=datafile, pickle_file=pickle_file, csv_file=csv_file, 
+                                pickle_ngrams=pickle_ngrams, max=466521)
 
-    def read_model(self):
+    def read_model(self, pickle_file):
         print('Loading model...')
-        pickle_file = 'C:/Users/hantz/Documents/Programmering/Verktyg/data/Ngrams/bloggmix_n=5_ngrams.pickle'
+        pickle_file = pickle_file
         with open(pickle_file, 'rb') as p:
             self.model = pickle.load(p)
         print('Finished.')
