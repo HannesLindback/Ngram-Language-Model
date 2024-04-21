@@ -17,13 +17,13 @@ class BuildModel:
     def __init__(self, n):
         self.ngrams = Ngrams(n)
 
-    def create_corpus(self, path):
+    def create_corpus(self, path, output_file):
         """Creates a corpus out of an XML-file containing text data from a UN-corpus.
         
         It is assumed that the corpus is located in several different 
         XML-files in several different nested folders. All these files
         are extracted with the use of the Path module and then each 
-        processed in turn. The helper function _extract() extracts the text from
+        processed in turn. The helper function extract_xml() extracts the text from
         each file and writes it to a new corpus file.
         
         Args:
@@ -37,12 +37,12 @@ class BuildModel:
             try:
                 if n % 1000 == 0:
                     print(n)
-                self.extract_xml(file, 'data/engelska.dat')  
+                self.extract_xml(file, output_file)  
             except:
                 pass
             n += 1
 
-    def extract_xml(self, xmlpath, outputfile=None, max=3000000):
+    def extract_xml(self, xmlpath, outputfile, max=3000000):
         """Extracts the text from an XML-file and writes it to a new file."""
 
         n = 0
